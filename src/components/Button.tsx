@@ -1,11 +1,42 @@
-type Props = {
+import classNames from 'classnames';
+
+type ButtonProps = {
   onClick: () => void;
+  color?: typeof buttonColors[number];
+  fullWidth?: boolean;
 };
 
-const Button: React.FC<Props> = ({ children, onClick }) => {
+export const buttonColors = ['red', 'blue', 'green', 'yellow'] as const;
+
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  color,
+  fullWidth,
+}) => {
+  const getButtonColor = () => {
+    switch (color) {
+      case 'red':
+        return 'bg-red-500 hover:bg-red-400';
+      case 'blue':
+        return 'bg-blue-500 hover:bg-blue-400';
+      case 'green':
+        return 'bg-green-500 hover:bg-green-400';
+      case 'yellow':
+        return 'bg-yellow-500 hover:bg-yellow-400';
+      default:
+        return 'bg-pink-500 hover:bg-pink-400';
+    }
+  };
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-full"
+      className={classNames(
+        'text-white font-bold py-2 px-4 rounded',
+        getButtonColor(),
+        {
+          'w-full': fullWidth,
+        }
+      )}
       onClick={onClick}
     >
       {children}
