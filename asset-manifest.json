@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/psychological-test/static/css/main.b5717afd.css",
+    "main.js": "/psychological-test/static/js/main.a2b4e03c.js",
+    "index.html": "/psychological-test/index.html",
+    "main.b5717afd.css.map": "/psychological-test/static/css/main.b5717afd.css.map",
+    "main.a2b4e03c.js.map": "/psychological-test/static/js/main.a2b4e03c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5717afd.css",
+    "static/js/main.a2b4e03c.js"
+  ]
+}
