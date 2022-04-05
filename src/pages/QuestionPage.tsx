@@ -1,4 +1,5 @@
 import Button, { buttonColors } from '../components/Button';
+import Window from '../components/Window';
 
 type QuestionProps = {
   question: string;
@@ -12,11 +13,13 @@ const QuestionPage: React.FC<QuestionProps> = ({
   choices,
 }) => {
   return (
-    <div className="bg-gray-200">
+    <>
       <div className="text-center p-2">
-        {question.split('\n').map((q, index) => (
-          <p key={index}>{q}</p>
-        ))}
+        <Window>
+          {question.split('\n').map((q, index) => (
+            <p key={index}>{q}</p>
+          ))}
+        </Window>
       </div>
       <div className="flex flex-wrap">
         {choices.map((choice, index) => {
@@ -33,7 +36,7 @@ const QuestionPage: React.FC<QuestionProps> = ({
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
