@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../components/Button';
 import Window from '../components/Window';
-import FadeOutText from '../components/FadeOutText';
+import FadeOutArea from '../components/FadeOutArea';
 
 type AnswerProps = {
   onClickButton: () => void;
@@ -26,12 +26,12 @@ const ResultPage: React.FC<AnswerProps> = ({
           <div className="py-2">{testContent}</div>
           <div className="py-2">「{answer.choice}」を選んだあなたは</div>
           <div className="py-2">
-            <FadeOutText transition_none={displayed}>
+            <FadeOutArea transition_none={displayed}>
               {answer.result}
-            </FadeOutText>
+            </FadeOutArea>
           </div>
           <div className="py-2">
-            <FadeOutText
+            <FadeOutArea
               transition_none={displayed}
               delay={1000}
               fadeOutCallback={() => setDisplayed(true)}
@@ -39,7 +39,7 @@ const ResultPage: React.FC<AnswerProps> = ({
               {answer.result_detail.split('\n').map((detail, index) => (
                 <p key={index}>{detail}</p>
               ))}
-            </FadeOutText>
+            </FadeOutArea>
           </div>
         </Window>
       </div>

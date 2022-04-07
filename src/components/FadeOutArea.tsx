@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 import { useState, useEffect } from 'react';
 
-type FadeOutTextProps = {
+type FadeOutAreaProps = {
   duration?: number;
   delay?: number;
   transition_none?: boolean;
   fadeOutCallback?: () => void;
 };
 
-const FadeOutText: React.FC<FadeOutTextProps> = ({
+const FadeOutArea: React.FC<FadeOutAreaProps> = ({
   duration = 1500,
   delay = 0,
   transition_none = true,
@@ -43,4 +43,4 @@ const FadeOutText: React.FC<FadeOutTextProps> = ({
   );
 };
 
-export default FadeOutText;
+export default FadeOutArea;
