@@ -3,6 +3,7 @@ import classNames from 'classnames';
 type ButtonProps = {
   onClick: () => void;
   color?: typeof buttonColors[number];
+  disabled?: boolean;
   fullWidth?: boolean;
 };
 
@@ -13,31 +14,33 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   color,
   fullWidth,
+  disabled = false,
 }) => {
   const getButtonColor = () => {
     switch (color) {
       case 'red':
-        return 'bg-red-500 hover:bg-red-400';
+        return 'bg-red-500 hover:disabled:bg-red-500 hover:bg-red-400';
       case 'blue':
-        return 'bg-blue-500 hover:bg-blue-400';
+        return 'bg-blue-500 hover:disabled:bg-blue-500 hover:bg-blue-400';
       case 'green':
-        return 'bg-green-500 hover:bg-green-400';
+        return 'bg-green-500 hover:disabled:bg-green-500 hover:bg-green-400';
       case 'yellow':
-        return 'bg-yellow-500 hover:bg-yellow-400';
+        return 'bg-yellow-500 hover:disabled:bg-yellow-500 hover:bg-yellow-400';
       default:
-        return 'bg-pink-500 hover:bg-pink-400';
+        return 'bg-pink-500 hover:disabled:bg-pink-500 hover:bg-pink-400';
     }
   };
   return (
     <button
       className={classNames(
-        'text-white font-bold py-2 px-4 rounded',
+        'text-white font-bold py-2 px-4 rounded disabled:opacity-50',
         getButtonColor(),
         {
           'w-full': fullWidth,
         }
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

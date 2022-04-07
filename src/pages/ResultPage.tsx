@@ -5,38 +5,48 @@ import FadeOutText from '../components/FadeOutText';
 
 type AnswerProps = {
   onClickButton: () => void;
-  result: string;
-  result_detail: string;
+  testContent: string;
+  answer: {
+    choice: string;
+    result: string;
+    result_detail: string;
+  };
 };
 
 const ResultPage: React.FC<AnswerProps> = ({
   onClickButton,
-  result,
-  result_detail,
+  testContent,
+  answer,
 }) => {
-  const [windowClicked, setWindowClicked] = useState(false);
+  const [displayed, setDisplayed] = useState(false);
   return (
     <>
       <div className="text-center p-2">
-        <Window onClick={() => setWindowClicked(true)}>
+        <Window onClick={() => setDisplayed(true)}>
+          <div className="py-2">{testContent}</div>
+          <div className="py-2">「{answer.choice}」を選んだあなたは</div>
           <div className="py-2">
-            <FadeOutText transition_none={windowClicked}>{result}</FadeOutText>
+            <FadeOutText transition_none={displayed}>
+              {answer.result}
+            </FadeOutText>
           </div>
           <div className="py-2">
-            {result_detail.split('\n').map((row, index) => (
-              <FadeOutText
-                transition_none={windowClicked}
-                key={index}
-                delay={1000}
-              >
-                {row}
-              </FadeOutText>
-            ))}
+            <FadeOutText
+              transition_none={displayed}
+              delay={1000}
+              fadeOutCallback={() => setDisplayed(true)}
+            >
+              {answer.result_detail.split('\n').map((detail, index) => (
+                <p key={index}>{detail}</p>
+              ))}
+            </FadeOutText>
           </div>
         </Window>
       </div>
       <div className="flex justify-center">
-        <Button onClick={onClickButton}>Next</Button>
+        <Button onClick={onClickButton} disabled={!displayed}>
+          Next
+        </Button>
       </div>
     </>
   );

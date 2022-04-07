@@ -22,11 +22,10 @@ const App = () => {
         />
       );
     } else {
-      const answer = content.answers[choseNo];
       return (
         <ResultPage
-          result={answer.result}
-          result_detail={answer.result_detail}
+          testContent={content.test_content}
+          answer={content.answers[choseNo]}
           onClickButton={() => {
             setQuestionNo((prev) => (prev + 1) % contents.length);
             setChoseNo(-1);

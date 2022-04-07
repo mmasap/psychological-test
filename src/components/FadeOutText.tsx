@@ -5,22 +5,28 @@ type FadeOutTextProps = {
   duration?: number;
   delay?: number;
   transition_none?: boolean;
+  fadeOutCallback?: () => void;
 };
 
 const FadeOutText: React.FC<FadeOutTextProps> = ({
-  duration = 1000,
+  duration = 1500,
   delay = 0,
   transition_none = true,
   children,
+  fadeOutCallback,
 }) => {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
     setFade(true);
-  }, []);
+    if (fadeOutCallback) {
+      const timeout = setTimeout(fadeOutCallback, duration + delay);
+      return () => clearTimeout(timeout);
+    }
+  }, [duration, delay, fadeOutCallback]);
 
   return (
-    <p
+    <div
       className={classNames({
         'transition-opacity': true,
         'transition-none': transition_none,
@@ -33,7 +39,7 @@ const FadeOutText: React.FC<FadeOutTextProps> = ({
       }}
     >
       {children}
-    </p>
+    </div>
   );
 };
 
