@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 type ButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   color?: typeof buttonColors[number];
   disabled?: boolean;
   fullWidth?: boolean;
