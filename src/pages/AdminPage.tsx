@@ -14,12 +14,16 @@ const AdminPage = () => {
       'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json'
     );
     const json: any = await res.json();
-    setUsers(Object.keys(json).map((key) => ({ id: key, ...json[key] })));
+    if (json) {
+      setUsers(Object.keys(json).map((key) => ({ id: key, ...json[key] })));
+    } else {
+      setUsers([]);
+    }
   };
 
-  const registerUser = (event: React.FormEvent<HTMLFormElement>) => {
+  const registerUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(
+    await fetch(
       'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json',
       {
         method: 'POST',
@@ -30,8 +34,8 @@ const AdminPage = () => {
     fetchUser();
   };
 
-  const deleteUser = (id: string) => {
-    fetch(
+  const deleteUser = async (id: string) => {
+    await fetch(
       `https://psychological-test-bd15b-default-rtdb.firebaseio.com/user/${id}.json`,
       { method: 'DELETE' }
     );
@@ -58,8 +62,8 @@ const AdminPage = () => {
       </form>
       <div>登録ユーザー</div>
       {users.map((user: any) => (
-        <div style={{ marginBottom: 8 }}>
-          <span key={user.id}>{user.userName}</span>
+        <div key={user.id} style={{ marginBottom: 8 }}>
+          <span>{user.userName}</span>
           <Button onClick={() => deleteUser(user.id)}>削除</Button>
         </div>
       ))}
