@@ -1,13 +1,13 @@
 import Button, { buttonColors } from '../components/Button';
 import Window from '../components/Window';
 
-type QuestionProps = {
+type QuestionPageProps = {
   question: string;
   choices: string[];
   onClickButton: (index: number) => void;
 };
 
-const QuestionPage: React.FC<QuestionProps> = ({
+const QuestionPage: React.FC<QuestionPageProps> = ({
   onClickButton,
   question,
   choices,

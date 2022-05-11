@@ -3,7 +3,7 @@ import Button from '../components/Button';
 import Window from '../components/Window';
 import FadeOut from '../components/FadeOut';
 
-type AnswerProps = {
+type ResultPageProps = {
   onClickButton: () => void;
   testContent: string;
   answer: {
@@ -13,7 +13,7 @@ type AnswerProps = {
   };
 };
 
-const ResultPage: React.FC<AnswerProps> = ({
+const ResultPage: React.FC<ResultPageProps> = ({
   onClickButton,
   testContent,
   answer,

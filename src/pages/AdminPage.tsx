@@ -1,15 +1,17 @@
 import { useRef, useEffect, useState } from 'react';
 import Button from '../components/Button';
+import InputText from '../components/InputText';
+import Label from '../components/Label';
 
 const AdminPage = () => {
   const [users, setUsers] = useState<any>([]);
   const userNameRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetchUser();
+    fetchQuestion();
   }, []);
 
-  const fetchUser = async () => {
+  const fetchQuestion = async () => {
     const res = await fetch(
       'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json'
     );
@@ -21,7 +23,7 @@ const AdminPage = () => {
     }
   };
 
-  const registerUser = async (event: React.FormEvent<HTMLFormElement>) => {
+  const registerQuestion = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await fetch(
       'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json',
@@ -31,40 +33,37 @@ const AdminPage = () => {
       }
     );
     userNameRef.current!.value = '';
-    fetchUser();
+    fetchQuestion();
   };
 
-  const deleteUser = async (id: string) => {
+  const deleteQuestion = async (id: string) => {
     await fetch(
       `https://psychological-test-bd15b-default-rtdb.firebaseio.com/user/${id}.json`,
       { method: 'DELETE' }
     );
-    fetchUser();
+    fetchQuestion();
   };
 
   return (
     <>
-      <form onSubmit={registerUser}>
-        <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="username"
-        >
-          Username
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="username"
-          type="text"
-          ref={userNameRef}
-          placeholder="Username"
-        />
+      <form onSubmit={registerQuestion}>
+        <div className="mb-2">
+          <Label htmlFor="username">Username</Label>
+        </div>
+        <div>
+          <InputText
+            inputRef={userNameRef}
+            id="username"
+            placeholder="Username"
+          />
+        </div>
         <Button>保存</Button>
       </form>
       <div>登録ユーザー</div>
       {users.map((user: any) => (
         <div key={user.id} style={{ marginBottom: 8 }}>
           <span>{user.userName}</span>
-          <Button onClick={() => deleteUser(user.id)}>削除</Button>
+          <Button onClick={() => deleteQuestion(user.id)}>削除</Button>
         </div>
       ))}
     </>
