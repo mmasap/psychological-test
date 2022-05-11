@@ -21,7 +21,7 @@ const InputNamePage: React.FC<InputNamePageProps> = ({ registerName }) => {
         />
       </div>
       <Button disabled={!userName} onClick={() => registerName(userName)}>
-        登録
+        開始
       </Button>
     </>
   );
