@@ -5,7 +5,7 @@ import FadeOut from '../components/FadeOut';
 
 type ResultPageProps = {
   onClickButton: () => void;
-  testContent: string;
+  testTitle: string;
   answer: {
     choice: string;
     result: string;
@@ -15,7 +15,7 @@ type ResultPageProps = {
 
 const ResultPage: React.FC<ResultPageProps> = ({
   onClickButton,
-  testContent,
+  testTitle,
   answer,
 }) => {
   const [displayed, setDisplayed] = useState(false);
@@ -23,7 +23,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
     <>
       <div className="text-center p-2">
         <Window onClick={() => setDisplayed(true)}>
-          <div className="py-2">{testContent}</div>
+          <div className="py-2">{testTitle}</div>
           <div className="py-2">「{answer.choice}」を選んだあなたは</div>
           <div className="py-2">
             <FadeOut transition_none={displayed}>{answer.result}</FadeOut>

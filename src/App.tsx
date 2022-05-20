@@ -33,7 +33,7 @@ const App = () => {
     } else {
       return (
         <ResultPage
-          testContent={content.test_content}
+          testTitle={content.test_title}
           answer={content.answers[choseNo]}
           onClickButton={() => {
             setQuestionNo((prev) => (prev + 1) % contents.length);
