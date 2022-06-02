@@ -1,15 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import InputNamePage from './pages/InputNamePage';
 import QuestionPage from './pages/QuestionPage';
 import ResultPage from './pages/ResultPage';
-import contents from './json/contents.json';
 import AdminPage from './pages/AdminPage';
+import { content } from './types/content';
 
 const App = () => {
   const [userName, setUserName] = useState('');
   const [questionNo, setQuestionNo] = useState(0);
   const [choseNo, setChoseNo] = useState(-1);
+  const [contents, setContents] = useState<content[]>([]);
+
+  useEffect(() => {
+    fetch('/question')
+      .then((res) => res.json())
+      .then((json) => setContents(json));
+  }, []);
 
   const content = contents[questionNo];
 
@@ -33,7 +40,7 @@ const App = () => {
     } else {
       return (
         <ResultPage
-          testTitle={content.test_title}
+          testTitle={content.testTitle}
           answer={content.answers[choseNo]}
           onClickButton={() => {
             setQuestionNo((prev) => (prev + 1) % contents.length);

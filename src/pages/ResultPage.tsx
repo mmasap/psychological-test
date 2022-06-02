@@ -9,7 +9,7 @@ type ResultPageProps = {
   answer: {
     choice: string;
     result: string;
-    result_detail: string;
+    resultDetail: string;
   };
 };
 
@@ -34,7 +34,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
               delay={1000}
               fadeOutCallback={() => setDisplayed(true)}
             >
-              {answer.result_detail.split('\n').map((detail, index) => (
+              {answer.resultDetail.split('\n').map((detail, index) => (
                 <p key={index}>{detail}</p>
               ))}
             </FadeOut>
