@@ -5,6 +5,8 @@ import QuestionPage from './pages/QuestionPage';
 import ResultPage from './pages/ResultPage';
 import AdminPage from './pages/AdminPage';
 import { content } from './types/content';
+import axios from './utils/axios';
+import { AxiosResponse } from 'axios';
 
 const App = () => {
   const [userName, setUserName] = useState('');
@@ -13,9 +15,11 @@ const App = () => {
   const [contents, setContents] = useState<content[]>([]);
 
   useEffect(() => {
-    fetch('/question')
-      .then((res) => res.json())
-      .then((json) => setContents(json));
+    axios
+      .get('/contents/-N3YLcbxTzQ0Ui8NNrhM.json')
+      .then((res: AxiosResponse<content[]>) => {
+        setContents(res.data);
+      });
   }, []);
 
   const content = contents[questionNo];

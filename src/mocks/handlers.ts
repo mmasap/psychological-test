@@ -2,7 +2,7 @@
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.get('/question', (req, res, ctx) => {
+  rest.get('/contents/-N3YLcbxTzQ0Ui8NNrhM.json', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
