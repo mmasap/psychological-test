@@ -2,6 +2,7 @@ import { useEffect, useState, Fragment } from 'react';
 import Button from '../components/Button';
 import InputText from '../components/InputText';
 import Label from '../components/Label';
+import { XIcon, PlusIcon } from '@heroicons/react/solid';
 
 type Answer = {
   choice: string;
@@ -39,13 +40,19 @@ const InputAnswerForm = (props: InputAnswerFromProps) => {
   } = props;
 
   return (
-    <div style={{ border: 'solid', padding: 4, marginBottom: 4 }}>
-      <div className="mb-2">
-        <span>選択肢 {answerIndex + 1}</span>
-        {displayDeleteButton && (
-          <Button onClick={() => onClickDelete(answerIndex)}>削除</Button>
-        )}
-      </div>
+    <div
+      className="border rounded border-indigo-500 p-2 mb-4 last:mb-2"
+      style={{ position: 'relative' }}
+    >
+      {displayDeleteButton && (
+        <div style={{ position: 'absolute', top: 5, right: 5 }}>
+          <XIcon
+            width={16}
+            height={16}
+            onClick={() => onClickDelete(answerIndex)}
+          />
+        </div>
+      )}
       {inputAnswerList.map((inputAnswer, index) => {
         const id = `${inputAnswer.name}_${index}`;
         return (
@@ -71,7 +78,6 @@ const InputAnswerForm = (props: InputAnswerFromProps) => {
 };
 
 const AdminPage = () => {
-  const [users, setUsers] = useState<any>([]);
   const [testTitle, setTestTitle] = useState('');
   const [question, setQuestion] = useState('');
   const [answers, setAnswers] = useState<Answer[]>([
@@ -84,15 +90,15 @@ const AdminPage = () => {
   }, []);
 
   const fetchQuestion = async () => {
-    const res = await fetch(
-      'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json'
-    );
-    const json: any = await res.json();
-    if (json) {
-      setUsers(Object.keys(json).map((key) => ({ id: key, ...json[key] })));
-    } else {
-      setUsers([]);
-    }
+    // const res = await fetch(
+    //   'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json'
+    // );
+    // const json: any = await res.json();
+    // if (json) {
+    //   setUsers(Object.keys(json).map((key) => ({ id: key, ...json[key] })));
+    // } else {
+    //   setUsers([]);
+    // }
   };
 
   const registerQuestion = async () => {
@@ -162,25 +168,21 @@ const AdminPage = () => {
             }}
           />
         ))}
-        <Button
-          onClick={() => {
-            setAnswers((prev) => [...prev, { ...initAnswerState }]);
-          }}
-          disabled={answers.length >= 4}
-        >
-          追加
-        </Button>
+        {answers.length < 4 && (
+          <PlusIcon
+            width={120}
+            height={16}
+            onClick={() => {
+              setAnswers((prev) => [...prev, { ...initAnswerState }]);
+            }}
+            className="m-auto border border-indigo-500"
+          />
+        )}
       </div>
-      <div>
+      <div className="text-right">
+        <Button className="mr-4">戻る</Button>
         <Button onClick={registerQuestion}>保存</Button>
       </div>
-      <div>登録ユーザー</div>
-      {users.map((user: any) => (
-        <div key={user.id} style={{ marginBottom: 8 }}>
-          <span>{user.userName}</span>
-          <Button onClick={() => deleteQuestion(user.id)}>削除</Button>
-        </div>
-      ))}
     </>
   );
 };

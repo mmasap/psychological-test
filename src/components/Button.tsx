@@ -5,6 +5,7 @@ type ButtonProps = {
   color?: typeof buttonColors[number];
   disabled?: boolean;
   fullWidth?: boolean;
+  className?: string;
 };
 
 export const buttonColors = ['red', 'blue', 'green', 'yellow'] as const;
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   color,
   fullWidth,
+  className,
   disabled = false,
 }) => {
   const getButtonColor = () => {
@@ -37,7 +39,8 @@ const Button: React.FC<ButtonProps> = ({
         getButtonColor(),
         {
           'w-full': fullWidth,
-        }
+        },
+        className
       )}
       onClick={onClick}
       disabled={disabled}
