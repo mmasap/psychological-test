@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Label from '../components/Label';
-import Button from '../components/Button';
+import Button from '../components/ui/Button';
 import InputText from '../components/InputText';
 
 type InputNamePageProps = {

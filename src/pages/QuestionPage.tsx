@@ -1,4 +1,4 @@
-import Button, { buttonColors } from '../components/Button';
+import Button, { buttonColors } from '../components/ui/Button';
 import Window from '../components/Window';
 
 type QuestionPageProps = {

@@ -1,5 +1,6 @@
 import { useEffect, useState, Fragment } from 'react';
-import Button from '../components/Button';
+import Button from '../components/ui/Button';
+import LoadingIcon from '../components/ui/LoadingIcon';
 import InputText from '../components/InputText';
 import Label from '../components/Label';
 import { XIcon, PlusIcon } from '@heroicons/react/solid';
@@ -80,6 +81,7 @@ const InputAnswerForm = (props: InputAnswerFromProps) => {
 const AdminPage = () => {
   const [testTitle, setTestTitle] = useState('');
   const [question, setQuestion] = useState('');
+  const [loading, setLoading] = useState(false);
   const [answers, setAnswers] = useState<Answer[]>([
     { ...initAnswerState },
     { ...initAnswerState },
@@ -104,6 +106,7 @@ const AdminPage = () => {
   const registerQuestion = async () => {
     console.log('registerQuestion');
     console.log(answers);
+    setLoading(true);
     // await fetch(
     //   'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json',
     //   {
@@ -168,17 +171,25 @@ const AdminPage = () => {
             }}
           />
         ))}
-        {answers.length < 4 && (
-          <PlusIcon
-            width={120}
-            height={16}
-            onClick={() => {
-              setAnswers((prev) => [...prev, { ...initAnswerState }]);
-            }}
-            className="m-auto border border-indigo-500"
-          />
-        )}
       </div>
+      {answers.length < 4 && (
+        <PlusIcon
+          width={120}
+          height={16}
+          onClick={() => {
+            setAnswers((prev) => [...prev, { ...initAnswerState }]);
+          }}
+          className="m-auto border border-indigo-500"
+        />
+      )}
+      {loading && (
+        <div className="backdrop-blur-sm bg-white/30 fixed bottom-0 left-0 right-0 top-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <LoadingIcon />
+          </div>
+        </div>
+      )}
+
       <div className="text-right">
         <Button className="mr-4">戻る</Button>
         <Button onClick={registerQuestion}>保存</Button>
