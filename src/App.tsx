@@ -15,11 +15,9 @@ const App = () => {
   const [contents, setContents] = useState<content[]>([]);
 
   useEffect(() => {
-    axios
-      .get('/contents/-N3YLcbxTzQ0Ui8NNrhM.json')
-      .then((res: AxiosResponse<content[]>) => {
-        setContents(res.data);
-      });
+    axios.get('/contents').then((res: AxiosResponse<content[]>) => {
+      setContents(res.data);
+    });
   }, []);
 
   const content = contents[questionNo];
