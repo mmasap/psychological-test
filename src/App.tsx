@@ -3,7 +3,7 @@ import Header from './components/Header';
 import InputNamePage from './pages/InputNamePage';
 import QuestionPage from './pages/QuestionPage';
 import ResultPage from './pages/ResultPage';
-import AdminPage from './pages/AdminPage';
+import AdminPage from './pages/admin/AdminPage';
 import { content } from './types/content';
 import axios from './utils/axios';
 import { AxiosResponse } from 'axios';

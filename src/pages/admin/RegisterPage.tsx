@@ -1,9 +1,11 @@
 import { useEffect, useState, Fragment } from 'react';
-import Button from '../components/ui/Button';
-import LoadingIcon from '../components/ui/LoadingIcon';
-import InputText from '../components/InputText';
-import Label from '../components/Label';
+import Button from '../../components/ui/Button';
+import LoadingIcon from '../../components/ui/LoadingIcon';
+import InputText from '../../components/InputText';
+import Label from '../../components/Label';
 import { XIcon, PlusIcon } from '@heroicons/react/solid';
+import axios from '../../utils/axios';
+import { AxiosResponse } from 'axios';
 
 type Answer = {
   choice: string;
@@ -78,7 +80,7 @@ const InputAnswerForm = (props: InputAnswerFromProps) => {
   );
 };
 
-const AdminPage = () => {
+const RegisterPage = () => {
   const [testTitle, setTestTitle] = useState('');
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
@@ -104,26 +106,13 @@ const AdminPage = () => {
   };
 
   const registerQuestion = async () => {
-    console.log('registerQuestion');
-    console.log(answers);
     setLoading(true);
-    // await fetch(
-    //   'https://psychological-test-bd15b-default-rtdb.firebaseio.com/user.json',
-    //   {
-    //     method: 'POST',
-    //     body: JSON.stringify({ userName: userNameRef.current!.value }),
-    //   }
-    // );
-    // userNameRef.current!.value = '';
-    // fetchQuestion();
-  };
-
-  const deleteQuestion = async (id: string) => {
-    await fetch(
-      `https://psychological-test-bd15b-default-rtdb.firebaseio.com/user/${id}.json`,
-      { method: 'DELETE' }
-    );
-    fetchQuestion();
+    axios
+      .post('/contents', JSON.stringify(answers))
+      .then((res: AxiosResponse) => {
+        console.log(res);
+        setLoading(false);
+      });
   };
 
   const onChangeAnswer = (name: keyof Answer, value: string, index: number) => {
@@ -198,4 +187,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default RegisterPage;
