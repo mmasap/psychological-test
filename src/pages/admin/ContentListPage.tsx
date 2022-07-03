@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../components/ui/Button';
-import { RootState } from '../../store';
-import { adminActions } from '../../store/admin';
+import Button from 'components/ui/Button';
+import { RootState } from 'store';
+import { adminActions } from 'store/admin';
 
 const ContentListPage = () => {
   const contents = useSelector((state: RootState) => state.admin.contents);

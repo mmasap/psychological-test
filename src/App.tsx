@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
-import Header from './components/Header';
-import InputNamePage from './pages/InputNamePage';
-import AdminPage from './pages/admin';
-import TestPage from './pages/test';
-import { RootState } from './store';
+import Header from 'components/Header';
+import InputNamePage from 'pages/InputNamePage';
+import AdminPage from 'pages/admin';
+import TestPage from 'pages/test';
+import { RootState } from 'store';
 
 const App = () => {
   const { userName } = useSelector((state: RootState) => state.ui);

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { content } from '../../types/content';
-import axios from '../../utils/axios';
+import { content } from 'types/content';
+import axios from 'utils/axios';
 import { AxiosResponse } from 'axios';
-import QuestionPage from './QuestionPage';
-import ResultPage from './ResultPage';
+import QuestionPage from 'pages/test/QuestionPage';
+import ResultPage from 'pages/test/ResultPage';
 
 const TestPage = () => {
   const [questionNo, setQuestionNo] = useState(0);

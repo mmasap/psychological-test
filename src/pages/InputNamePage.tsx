@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Label from '../components/Label';
-import Button from '../components/ui/Button';
-import InputText from '../components/InputText';
-import { uiActions } from '../store/ui';
+import Label from 'components/Label';
+import Button from 'components/ui/Button';
+import InputText from 'components/InputText';
+import { uiActions } from 'store/ui';
 
 const InputNamePage: React.FC = () => {
   const [userName, setUserName] = useState('');

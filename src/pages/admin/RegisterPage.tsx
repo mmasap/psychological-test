@@ -1,10 +1,10 @@
 import { useEffect, useState, Fragment } from 'react';
-import Button from '../../components/ui/Button';
-import LoadingIcon from '../../components/ui/LoadingIcon';
-import InputText from '../../components/InputText';
-import Label from '../../components/Label';
+import Button from 'components/ui/Button';
+import LoadingIcon from 'components/ui/LoadingIcon';
+import InputText from 'components/InputText';
+import Label from 'components/Label';
 import { XIcon, PlusIcon } from '@heroicons/react/solid';
-import axios from '../../utils/axios';
+import axios from 'utils/axios';
 import { AxiosResponse } from 'axios';
 
 type Answer = {

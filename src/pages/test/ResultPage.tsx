@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Button from '../../components/ui/Button';
-import Window from '../../components/Window';
-import FadeOut from '../../components/FadeOut';
+import Button from 'components/ui/Button';
+import Window from 'components/Window';
+import FadeOut from 'components/FadeOut';
 
 type ResultPageProps = {
   onClickButton: () => void;
@@ -19,6 +19,7 @@ const ResultPage: React.FC<ResultPageProps> = ({
   answer,
 }) => {
   const [displayed, setDisplayed] = useState(false);
+
   return (
     <>
       <div className="text-center p-2">

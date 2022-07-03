@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import ContentListPage from './ContentListPage';
-import RegisterPage from './RegisterPage';
-import { RootState } from '../../store';
+import ContentListPage from 'pages/admin/ContentListPage';
+import RegisterPage from 'pages/admin/RegisterPage';
+import { RootState } from 'store';
 
 const AdminPage = () => {
   const mode = useSelector((state: RootState) => state.admin.mode);

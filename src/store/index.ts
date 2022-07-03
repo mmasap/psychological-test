@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import adminReducer from './admin';
-import uiReducer from './ui';
+import adminReducer from 'store/admin';
+import uiReducer from 'store/ui';
 
 const store = configureStore({
   reducer: {
