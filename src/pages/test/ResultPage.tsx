@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Button from '../components/ui/Button';
-import Window from '../components/Window';
-import FadeOut from '../components/FadeOut';
+import Button from '../../components/ui/Button';
+import Window from '../../components/Window';
+import FadeOut from '../../components/FadeOut';
 
 type ResultPageProps = {
   onClickButton: () => void;

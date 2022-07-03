@@ -1,55 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import Header from './components/Header';
 import InputNamePage from './pages/InputNamePage';
-import QuestionPage from './pages/QuestionPage';
-import ResultPage from './pages/ResultPage';
-import AdminPage from './pages/admin/AdminPage';
-import { content } from './types/content';
-import axios from './utils/axios';
-import { AxiosResponse } from 'axios';
+import AdminPage from './pages/admin';
+import TestPage from './pages/test';
+import { RootState } from './store';
 
 const App = () => {
-  const [userName, setUserName] = useState('');
-  const [questionNo, setQuestionNo] = useState(0);
-  const [choseNo, setChoseNo] = useState(-1);
-  const [contents, setContents] = useState<content[]>([]);
-
-  useEffect(() => {
-    axios.get('/contents').then((res: AxiosResponse<content[]>) => {
-      setContents(res.data);
-    });
-  }, []);
-
-  const content = contents[questionNo];
+  const { userName } = useSelector((state: RootState) => state.ui);
 
   const getDisplayPage = () => {
     if (!userName) {
-      return (
-        <InputNamePage registerName={(name: string) => setUserName(name)} />
-      );
+      return <InputNamePage />;
     } else if (userName === 'admin') {
       return <AdminPage />;
-    } else if (choseNo < 0) {
-      return (
-        <QuestionPage
-          question={content.question}
-          choices={content.answers.map((answer) => answer.choice)}
-          onClickButton={(chooseNo) => {
-            setChoseNo(chooseNo);
-          }}
-        />
-      );
     } else {
-      return (
-        <ResultPage
-          testTitle={content.testTitle}
-          answer={content.answers[choseNo]}
-          onClickButton={() => {
-            setQuestionNo((prev) => (prev + 1) % contents.length);
-            setChoseNo(-1);
-          }}
-        />
-      );
+      return <TestPage />;
     }
   };
 
