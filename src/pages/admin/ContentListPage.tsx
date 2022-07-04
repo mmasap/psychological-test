@@ -1,11 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import Button from 'components/ui/Button';
-import { RootState } from 'store';
-import { adminActions } from 'store/admin';
+import { adminActions, fetchContents } from 'store/admin';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 
 const ContentListPage = () => {
-  const contents = useSelector((state: RootState) => state.admin.contents);
-  const dispatch = useDispatch();
+  const contents = useAppSelector((state) => state.admin.contents);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContents());
+  }, [dispatch]);
 
   return (
     <div>

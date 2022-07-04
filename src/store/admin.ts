@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'utils/axios';
 
 type Mode = 'list' | 'new' | 'edit';
 
@@ -12,6 +13,14 @@ type Content = {
   }[];
 };
 
+export const fetchContents = createAsyncThunk<Content[]>(
+  'users/fetchContents',
+  async () => {
+    const response = await axios.get('/contents');
+    return response.data;
+  }
+);
+
 const initialState: { mode: Mode; contents: Content[] } = {
   mode: 'list',
   contents: [],
@@ -24,6 +33,11 @@ const adminSlice = createSlice({
     changeMode(state, action: PayloadAction<Mode>) {
       state.mode = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchContents.fulfilled, (state, action) => {
+      state.contents = action.payload;
+    });
   },
 });
 
