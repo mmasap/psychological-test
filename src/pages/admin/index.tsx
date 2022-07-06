@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
 import ContentListPage from 'pages/admin/ContentListPage';
 import RegisterPage from 'pages/admin/RegisterPage';
-import { RootState } from 'store';
+import useAppSelector from 'hooks/useAppSelector';
 
 const AdminPage = () => {
-  const mode = useSelector((state: RootState) => state.admin.mode);
+  const mode = useAppSelector((state) => state.admin.mode);
 
   switch (mode) {
     case 'list':

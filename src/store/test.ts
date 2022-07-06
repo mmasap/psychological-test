@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type Mode = 'list' | 'new' | 'edit';
+type Mode = 'question' | 'answer';
 
 const initialState: { mode: Mode } = {
-  mode: 'list',
+  mode: 'question',
 };
 
-const adminSlice = createSlice({
+const testSlice = createSlice({
   name: 'admin',
   initialState,
   reducers: {
@@ -16,5 +16,5 @@ const adminSlice = createSlice({
   },
 });
 
-export const adminActions = adminSlice.actions;
-export default adminSlice.reducer;
+export const testActions = testSlice.actions;
+export default testSlice.reducer;

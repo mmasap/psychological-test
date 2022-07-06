@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import Button from 'components/ui/Button';
-import { adminActions, fetchContents } from 'store/admin';
+import { fetchContents } from 'store/data';
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
+import { adminActions } from 'store/admin';
 
 const ContentListPage = () => {
-  const contents = useAppSelector((state) => state.admin.contents);
+  const contents = useAppSelector((state) => state.data.contents);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

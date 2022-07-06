@@ -1,17 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  userName: '',
+  modal: false,
 };
 
 const uiSlice = createSlice({
   name: 'ui',
   initialState,
-  reducers: {
-    registerUserName(state, action: PayloadAction<string>) {
-      state.userName = action.payload;
-    },
-  },
+  reducers: {},
 });
 
 export const uiActions = uiSlice.actions;

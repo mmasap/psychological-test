@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Label from 'components/Label';
 import Button from 'components/ui/Button';
 import InputText from 'components/InputText';
-import { uiActions } from 'store/ui';
+import { appActions } from 'store/app';
 
 const InputNamePage: React.FC = () => {
   const [userName, setUserName] = useState('');
@@ -22,7 +22,7 @@ const InputNamePage: React.FC = () => {
       </div>
       <Button
         disabled={!userName}
-        onClick={() => dispatch(uiActions.registerUserName(userName))}
+        onClick={() => dispatch(appActions.registerUserName(userName))}
       >
         開始
       </Button>

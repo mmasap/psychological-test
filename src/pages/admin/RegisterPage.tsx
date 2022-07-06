@@ -6,6 +6,8 @@ import Label from 'components/Label';
 import { XIcon, PlusIcon } from '@heroicons/react/solid';
 import axios from 'utils/axios';
 import { AxiosResponse } from 'axios';
+import useAppDispatch from 'hooks/useAppDispatch';
+import { adminActions } from 'store/admin';
 
 type Answer = {
   choice: string;
@@ -88,6 +90,8 @@ const RegisterPage = () => {
     { ...initAnswerState },
     { ...initAnswerState },
   ]);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetchQuestion();
@@ -180,7 +184,12 @@ const RegisterPage = () => {
       )}
 
       <div className="text-right">
-        <Button className="mr-4">戻る</Button>
+        <Button
+          className="mr-4"
+          onClick={() => dispatch(adminActions.changeMode('list'))}
+        >
+          戻る
+        </Button>
         <Button onClick={registerQuestion}>保存</Button>
       </div>
     </>

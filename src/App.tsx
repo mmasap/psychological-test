@@ -7,7 +7,7 @@ import TestPage from 'pages/test';
 import { RootState } from 'store';
 
 const App = () => {
-  const { userName } = useSelector((state: RootState) => state.ui);
+  const { userName } = useSelector((state: RootState) => state.app);
 
   const getDisplayPage = () => {
     if (!userName) {
