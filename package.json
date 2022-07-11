@@ -27,7 +27,10 @@
     "serve": "serve -s ./build -p 5000",
     "build-production": "dotenv -e .env.production react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged",
+    "check-type": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
@@ -51,10 +54,20 @@
     "autoprefixer": "^10.4.4",
     "classnames": "^2.3.1",
     "dotenv-cli": "^5.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "msw": "^0.42.0",
     "postcss": "^8.4.12",
+    "prettier": "2.7.1",
     "serve": "^13.0.2",
     "tailwindcss": "^3.0.23"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier src --write",
+      "eslint src --fix",
+      "bash -c 'npm run check-type'"
+    ]
   },
   "msw": {
     "workerDirectory": "public"
